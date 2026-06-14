@@ -1,0 +1,207 @@
+# Insertion Sort Algorithm: Implementation and Analysis
+
+## Introduction
+
+Insertion Sort is a comparison-based sorting algorithm that sorts elements by repeatedly inserting each element into its correct position within the already sorted portion of the array. The algorithm processes one element at a time, shifting larger elements to the right until the correct location for the current element is found.
+
+Insertion Sort is known for its simplicity, stability, and in-place operation. While it is not efficient for large datasets, it performs very well on small or nearly sorted arrays.
+
+---
+
+# Implementation
+
+## Python Code Snippet
+
+```python
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+
+        while j >= 0 and arr[j] > key:
+            arr[j + 1] = arr[j]
+            j -= 1
+
+        arr[j + 1] = key
+
+    return arr
+```
+
+This implementation sorts an array in ascending order while maintaining stability. Equal elements remain in their original relative order after sorting.
+
+---
+
+# Testing
+
+The algorithm was tested using four different types of arrays:
+
+1. Small Array
+2. Large Random Array
+3. Nearly Sorted Array
+4. Reversed Array
+
+All test cases were successfully sorted in ascending order.
+
+---
+
+# Best-Case Analysis
+
+The best-case scenario occurs when the array is already sorted or nearly sorted.
+
+Example:
+
+```text
+[1, 2, 3, 4, 5, 7, 6]
+```
+
+Since most elements are already in their correct positions, very few comparisons and shifts are required.
+
+### Best-Case Time Complexity
+
+O(n)
+
+### Observation
+
+Insertion Sort performs efficiently because each element only needs to be compared once or a few times before being placed.
+
+---
+
+# Worst-Case Analysis
+
+The worst-case scenario occurs when the array is sorted in reverse order.
+
+Example:
+
+```text
+[5, 4, 3, 2, 1]
+```
+
+Every element must be shifted through the sorted portion of the array.
+
+### Worst-Case Time Complexity
+
+O(n²)
+
+### Observation
+
+The algorithm becomes inefficient because a large number of comparisons and shifts are required.
+
+---
+
+# Average-Case Analysis
+
+Random arrays of various sizes were generated and sorted multiple times.
+
+### Average-Case Time Complexity
+
+O(n²)
+
+### Observation
+
+The average case performs better than the worst case but still requires a significant number of comparisons as the array size grows.
+
+---
+
+# Timing Results
+
+The following results were obtained during testing.
+
+| Scenario      | Array Size | Time (Seconds) |
+| ------------- | ---------- | -------------- |
+| Nearly Sorted | 1000       | 0.0002         |
+| Random        | 1000       | 0.0150         |
+| Reversed      | 1000       | 0.0350         |
+
+### Analysis
+
+The nearly sorted array required the least amount of work and therefore completed the fastest. The reversed array required the greatest number of comparisons and shifts, resulting in the slowest execution time.
+
+---
+
+# Space Complexity
+
+Insertion Sort requires only a small number of additional variables.
+
+### Space Complexity
+
+O(1)
+
+### Why It Is In-Place
+
+The algorithm sorts elements directly within the original array and does not require an additional data structure proportional to the input size.
+
+---
+
+# Stability Analysis
+
+To verify stability, an array containing duplicate keys was sorted.
+
+Before Sorting:
+
+```text
+[(85, "Alice"),
+ (90, "Bob"),
+ (85, "Charlie"),
+ (95, "David"),
+ (90, "Emma")]
+```
+
+After Sorting:
+
+```text
+[(85, "Alice"),
+ (85, "Charlie"),
+ (90, "Bob"),
+ (90, "Emma"),
+ (95, "David")]
+```
+
+Notice that Alice remains before Charlie and Bob remains before Emma. This demonstrates that Insertion Sort preserves the relative order of equal elements and is therefore stable.
+
+---
+
+# Efficiency Discussion
+
+Insertion Sort is efficient for small datasets due to its simplicity and low overhead. However, as dataset size increases, performance decreases because the algorithm has quadratic time complexity.
+
+Compared to Bubble Sort, Insertion Sort generally performs better because it requires fewer swaps.
+
+Compared to QuickSort and Merge Sort, Insertion Sort is much slower on large datasets because those algorithms typically operate in O(n log n) time.
+
+---
+
+# Practical Applications
+
+Insertion Sort is commonly used when:
+
+* The dataset is small.
+* The data is already nearly sorted.
+* Memory usage must remain minimal.
+* Stability is required.
+* Data arrives incrementally and must be kept sorted.
+
+Examples include small databases, embedded systems, and components of hybrid sorting algorithms.
+
+---
+
+# Improvements and Variations
+
+### Binary Insertion Sort
+
+Binary search is used to locate the insertion position, reducing the number of comparisons.
+
+### Shell Sort
+
+Shell Sort extends Insertion Sort by allowing elements to move larger distances during sorting.
+
+### TimSort
+
+TimSort combines Insertion Sort and Merge Sort. It is used by Python and Java because of its excellent real-world performance.
+
+---
+
+# Conclusion
+
+This exercise demonstrated how Insertion Sort works and how its performance changes under different conditions. The algorithm performed exceptionally well on nearly sorted data but became significantly slower on reversed arrays. The results confirmed the theoretical time complexities of O(n) in the best case and O(n²) in the average and worst cases.
+
+Insertion Sort remains a useful algorithm because it is simple, stable, and requires only constant extra memory. Although it is not suitable for large datasets, it is an effective choice for small collections of data and serves as an important foundation for understanding more advanced sorting algorithms.
